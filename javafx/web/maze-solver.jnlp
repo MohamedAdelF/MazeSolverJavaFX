@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="https://mohamedadelf.github.io/MazeSolverJavaFX/" href="maze-solver.jnlp">
+    <information>
+        <title>Maze Solver Robot</title>
+        <vendor>MohamedAdelF</vendor>
+        <description>Maze Solver visualization using JavaFX</description>
+        <description kind="short">Interactive maze solver with DFS, BFS, and Linked List algorithms</description>
+        <offline-allowed/>
+    </information>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="11+" java-vm-args="-Xmx512m"/>
+        <jar href="maze-solver.jar" main="true"/>
+    </resources>
+    <application-desc main-class="com.mazesolver.Main">
+    </application-desc>
+</jnlp>
+

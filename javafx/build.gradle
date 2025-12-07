@@ -28,3 +28,37 @@ dependencies {
     // JavaFX is handled by the plugin
 }
 
+// Task to create JAR for web deployment
+task createWebJar(type: Jar, dependsOn: classes) {
+    archiveBaseName = 'maze-solver'
+    archiveVersion = '1.0'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    
+    manifest {
+        attributes(
+            'Main-Class': 'com.mazesolver.Main',
+            'Implementation-Title': 'Maze Solver Robot',
+            'Implementation-Version': '1.0'
+        )
+    }
+    
+    from {
+        configurations.runtimeClasspath.collect { 
+            it.isDirectory() ? it : zipTree(it) 
+        }
+    }
+    with jar
+    
+    destinationDirectory = file('web')
+}
+
+task prepareWebDeployment {
+    dependsOn 'createWebJar'
+    doLast {
+        println "✅ Web deployment files ready in web/ directory"
+        println "📦 JAR file: web/maze-solver-1.0.jar"
+        println "🌐 HTML file: web/index.html"
+        println "📄 JNLP file: web/maze-solver.jnlp"
+    }
+}
+
